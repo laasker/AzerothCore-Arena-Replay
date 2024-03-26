@@ -12838,6 +12838,7 @@ void Player::SetClientControl(Unit* target, bool allowMove, bool packetOnly /*= 
 
 void Player::SetMover(Unit* target)
 {
+    std::string tarId = target->GetGUID().ToString();
     if (this != target && target->m_movedByPlayer && target->m_movedByPlayer != target && target->m_movedByPlayer != this)
     {
         LOG_INFO("misc", "Player::SetMover (A1) - {}, {}, {}, {}, {}, {}, {}, {}", GetGUID().ToString(), GetMapId(), GetInstanceId(), FindMap()->GetId(), IsInWorld() ? 1 : 0, IsDuringRemoveFromWorld() ? 1 : 0, IsBeingTeleported() ? 1 : 0, isBeingLoaded() ? 1 : 0);

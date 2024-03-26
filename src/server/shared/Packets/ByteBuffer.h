@@ -431,6 +431,11 @@ public:
         return _storage.data();
     }
 
+    std::vector<uint8> contentsAsVector()
+    {
+        return _storage;
+    }
+
     [[nodiscard]] uint8 const* contents() const
     {
         if (_storage.empty())

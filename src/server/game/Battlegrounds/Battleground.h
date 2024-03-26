@@ -324,6 +324,7 @@ public:
     [[nodiscard]] BattlegroundTypeId GetBgTypeID(bool GetRandom = false) const { return GetRandom ? m_RandomTypeID : m_RealTypeID; }
     [[nodiscard]] BattlegroundBracketId GetBracketId() const { return m_BracketId; }
     [[nodiscard]] uint32 GetInstanceID() const        { return m_InstanceID; }
+    [[nodiscard]] uint32 GetReplayID() const          { return m_ReplayID; }
     [[nodiscard]] BattlegroundStatus GetStatus() const { return m_Status; }
     [[nodiscard]] uint32 GetClientInstanceID() const  { return m_ClientInstanceID; }
     [[nodiscard]] uint32 GetStartTime() const         { return m_StartTime; }
@@ -353,6 +354,7 @@ public:
     void SetRandomTypeID(BattlegroundTypeId TypeID) { m_RandomTypeID = TypeID; }
     void SetBracket(PvPDifficultyEntry const* bracketEntry);
     void SetInstanceID(uint32 InstanceID) { m_InstanceID = InstanceID; }
+    void SetReplayID(uint32 ReplayID) { m_ReplayID = ReplayID; }
     void SetStatus(BattlegroundStatus Status) { m_Status = Status; }
     void SetClientInstanceID(uint32 InstanceID) { m_ClientInstanceID = InstanceID; }
     void SetStartTime(uint32 Time) { m_StartTime = Time; }
@@ -649,6 +651,7 @@ private:
     BattlegroundTypeId m_RealTypeID;
     BattlegroundTypeId m_RandomTypeID;                  // TypeID created from Random Battleground list
     uint32 m_InstanceID;                                // Battleground Instance's GUID!
+    uint32 m_ReplayID;
     BattlegroundStatus m_Status;
     uint32 m_ClientInstanceID;                          // the instance-id which is sent to the client and without any other internal use
     uint32 m_StartTime;

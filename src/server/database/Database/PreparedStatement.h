@@ -93,6 +93,11 @@ public:
         SetValidData(index, value);
     }
 
+    inline void SetBinary(const uint8 index, const std::vector<uint8>& value)
+    {
+        statement_data[index].data = value;
+    }
+
     // Set nullptr
     inline void SetData(const uint8 index, std::nullptr_t = nullptr)
     {

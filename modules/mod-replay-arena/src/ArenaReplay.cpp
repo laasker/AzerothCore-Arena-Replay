@@ -161,7 +161,7 @@ public:
     void OnBattlegroundEnd(Battleground* bg, TeamId winnerTeamId) override
     {
         /*
-        if (!bg->isRated())
+        if (!bg->isRated()) // skip Skirmish Arenas
             return;*/
 
         uint32 replayId = bg->GetReplayID();
@@ -176,7 +176,7 @@ public:
     void saveReplay(Battleground* bg)
     {
         /*
-        if (!bg->isRated())
+        if (!bg->isRated()) // skip Skirmish Arenas
             return;*/
 
         //retrieve replay data
@@ -202,7 +202,7 @@ public:
         /********************************/
 
 
-        CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_BG_REPLAYS);
+        CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_ARENA_REPLAYS);
         stmt->SetData<uint32>(0, uint32(match.arenaTypeId));
         stmt->SetData<uint32>(1, uint32(match.typeId));
         stmt->SetData<uint32>(2, buffer.size());
@@ -286,7 +286,7 @@ private:
 
     bool loadReplayDataForPlayer(Player* p, uint32 matchId)
     {
-        QueryResult result = CharacterDatabase.Query("SELECT id, arenaTypeId, typeId, contentSize, contents, mapId FROM character_bg_replays where id =  {}", matchId);
+        QueryResult result = CharacterDatabase.Query("SELECT id, arenaTypeId, typeId, contentSize, contents, mapId FROM character_arena_replays where id =  {}", matchId);
         if (!result)
         {
             ChatHandler(p->GetSession()).PSendSysMessage("Replay data not found.");
@@ -309,7 +309,7 @@ private:
     std::vector<uint32> loadLast10Replays()
     {
         std::vector<uint32> records;
-        QueryResult result = CharacterDatabase.Query("SELECT id FROM character_bg_replays order by id desc limit 10");
+        QueryResult result = CharacterDatabase.Query("SELECT id FROM character_arena_replays order by id desc limit 10");
         if (!result)
             return records;
 
